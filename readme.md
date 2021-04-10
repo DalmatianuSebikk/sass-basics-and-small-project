@@ -13,13 +13,14 @@
 ## 1. CE ESTE SASS?
 Sass (sau cum se prezinta pe site-ul oficial, "Syntactically Awesome StyleSheets") este o extensie a limbajului CSS. Sintaxa SASS e de doua tipuri: cea indented, adica cea originala, asemanatoare cu Haml, si cea noua care e Sassy CSS. Ai extensii diferite pentru SASS si SCSS. Poti sa-i mai spui "CSS with Superpowers". Este mult mai organizat si mai logic decat CSS. Se zice ca o data ce inveti SASS nu o sa mai folosesti CSS :)) 
 
-De ce ai nevoie ca sa scrii SASS?
+### De ce ai nevoie ca sa scrii SASS?
 
 1. Un IDE (in cazul meu Visual Studio Code)
 2. Un compilator de SASS, pentru ca browserul tau nu stie sa citeasca SASS, deci codul trebuie compilat in plain CSS. Exista mai multe metode de compilare, fie cu nodeJS, fie cu extensie Live Sass Compiler de pe VS Code. (Eu extensia o voi folosi)
 3. Un Live Server (sa nu tot dai reload la pagina i guess).
 
-O mica recomandare: sa nu uiti, daca folosesti extensia din VS Code de SASS, sa iti faci setarile cum vrei tu la compiler (Sa ii zici unde sa puna fisierele compilate, in cazul meu, in /dist/css)
+### O mica recomandare: 
+- sa nu uiti, daca folosesti extensia din VS Code de SASS, sa iti faci setarile cum vrei tu la compiler (Sa ii zici unde sa puna fisierele compilate, in cazul meu, in /dist/css)
 
 ## 2. SINTAXA SASS
 Sass accepta doua tipuri de sintaxe:
@@ -35,7 +36,7 @@ Sass accepta doua tipuri de sintaxe:
             &:hover{cursor:pointer;}
         }
     ```
-2. Sintaxa "Indented": Foloseste identarea in loc de paranteze si nu mai folosesti ;
+2. Sintaxa "Indented": identezi in loc sa pui paranteze si nu mai folosesti ";".
     ```sass
         @mixin button-base()
             @include typography(button)
@@ -47,7 +48,7 @@ Sass accepta doua tipuri de sintaxe:
     ```
 
 ## 3. VARIABILE
-- sintaxa unei variabile: $numeVariabila: valoare;
+- sintaxa unei variabile: `$numeVariabila: valoare`;
 - In momentul in care tu folosesti variabile in SASS, ele nu se vor compila in variabile in CSS, ele se vor compila cu valoarea implicita a variabilei (adica tu daca vrei sa pui de exemplu o culoare backgroundului, in SCSS vei avea ```background:$numeVariabila```, dar in CSS compilat vei avea ```background:valoareaVariabilei;```)
 
 ## 4. MAPS
@@ -56,7 +57,7 @@ Sass accepta doua tipuri de sintaxe:
     "cheie2": altaValoare,
     "cheie3": altaValoare2
 );```
-- daca vrei sa folosesti ce ai in map, ai o functie pentru asa ceva. De exemplu, am facut un map pentru font-weights, si avem o cheie ```bold``` cu o anumita valoare. Daca vrem sa mergem in body si sa modificam font-weight astfel incat valoarea acestuia sa fie bold-ul din map, scriem astfel: ```font-weight:map-get($font-weights, bold)```, unde ```map-get()``` este functia pentru a lua valoarea din map cu cheia data ca parametru.
+- daca vrei sa folosesti ce ai in map, ai o functie pentru asa ceva. De exemplu, am facut un map pentru font-weights, si avem o cheie ```bold``` cu o anumita valoare. Daca vrem sa mergem in body si sa modificam font-weight astfel incat valoarea acestuia sa fie bold-ul din map, scriem astfel: ```font-weight:map-get($font-weights, bold)```, unde ```map-get()``` este functia pentru a lua valoarea din map cu cheia data ca parametru, iar mapul poate fi ceva de genul ```$font-weights: ("bold":400);```
 
 ## 5. NESTING
 - intr-o clasa daca doresti sa modifici un tag doar din interiorul ei, in SCSS poti sa faci un lucru pe nume "nesting". De exemplu:
@@ -70,7 +71,13 @@ Sass accepta doua tipuri de sintaxe:
         .main__paragraph{
             /*ceva proprietati */
         }
-        /*o alta solutie este folosirea ampersantului, ca sa nu mai scrii main, si atunci ar fi  &__paragraph, dar apare o alta problema acum, faptul ca in css nu va mai mai fi nested cu .main, ci va fi el singur, ca o clasa izolata. Pentru a rezolva asta trebuie sa folosim interpolarea, deci nu vrem doar .main__paragraph, vrem totul de dinainte, iar pentru asta facem #{&}__paragraph, ca sa iei si parintele de deasupra, si in css sa fie .main .main__paragraph */
+        /*o alta solutie este folosirea ampersantului, ca sa nu mai scrii main, si atunci ar fi  &__paragraph, 
+        dar apare o alta problema acum, faptul ca in css nu va mai mai fi nested cu .main, 
+        ci va fi el singur, ca o clasa izolata. 
+        Pentru a rezolva asta trebuie sa folosim interpolarea, deci nu vrem doar .main__paragraph, vrem totul 
+        de dinainte, iar pentru asta facem #{&}__paragraph, 
+        ca sa iei si parintele de deasupra, si in css sa fie .main .main__paragraph */
+        
         #{&}__paragraph{
             /*proprietati*/
 
@@ -131,6 +138,9 @@ Sass accepta doua tipuri de sintaxe:
 
 ## 10. OPERATII MATEMATICE
 - In CSS exista functia de ```calc()```, iar in paranteze puneam ce voiam noi sa calculam. In SASS poti sa renunti la asta. In schimb, ceea ce ar trebui sa fie de tinut minte aici este ca daca puteai in CSS sa faci smecherii de tipul ```calc(40% - 200px)```, in SASS nu prea mai e valabil acest lucru, pentru ca operanzii trebuie sa fie de acelasi tip. Cand este compilat, CSS-ul va pune rezultatul.
+
+## 11. DOCUMENTATIA DE LA SASS
+- [O ai aici](https://sass-lang.com/documentation)
 
 
 
